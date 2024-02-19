@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://di4uvdyv0rqyo"]
+
+[ext_resource type="Script" path="res://Node.gd" id="1_a3c8m"]
+[ext_resource type="PackedScene" uid="uid://r152113rte8x" path="res://node_2d.tscn" id="2_kx6ic"]
+
+[node name="Node" type="Node2D"]
+script = ExtResource("1_a3c8m")
+breakyou = ExtResource("2_kx6ic")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

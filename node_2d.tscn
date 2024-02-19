@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://r152113rte8x"]
+
+[ext_resource type="Script" path="res://node_2d.gd" id="1_8c72n"]
+[ext_resource type="Texture2D" uid="uid://cdkrmw2wuoc21" path="res://r.tres" id="2_wb3mg"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_o3rcm"]
+size = Vector3(33.3, 33.3, 33.3)
+
+[sub_resource type="Gradient" id="Gradient_ylul2"]
+colors = PackedColorArray(0.788235, 0.788235, 0.788235, 0.498039, 1, 1, 1, 0)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_8c72n")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+show_behind_parent = true
+mesh = SubResource("BoxMesh_o3rcm")
+texture = ExtResource("2_wb3mg")
+
+[node name="Line2D" type="Line2D" parent="MeshInstance2D"]
+points = PackedVector2Array(0, -16.65, 0, -316.35)
+width = 33.3
+default_color = Color(1, 1, 1, 0)
+gradient = SubResource("Gradient_ylul2")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-16.65, -316.35, 33.3, 333)
+
+[node name="Day" type="PointLight2D" parent="."]
+rotation = 1.5708
+energy = 2.44
+blend_mode = 2
+texture = ExtResource("2_wb3mg")
+texture_scale = 33.3
+
+[node name="Night" type="DirectionalLight2D" parent="."]
+color = Color(0, 0, 0, 1)
+energy = 1.22
+blend_mode = 2
+range_z_min = -666
+range_z_max = 666
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.498039)
+max_distance = 999.0
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
